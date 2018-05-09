@@ -59,6 +59,16 @@ SELECT  ko~ebeln ko~bsart po~ebelp po~matnr
   INTO TABLE ti_uniq
   WHERE ko~ebeln IN s_ebeln.
 
+*--------------------------------------------------------------------*
+*  CRIANDO IF PARA CHECAR ERROS E VERIFICAR SE PODE CONTINUAR RODANDO
+*IF SY-SUBRC EQ 0.
+*
+*   PROCESSO DE DADOS 
+*
+*ENDIF.
+*--------------------------------------------------------------------*
+  
+
 
 LOOP AT ti_uniq INTO wa_uniq.
 
