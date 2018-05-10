@@ -63,18 +63,45 @@ SELECT  ko~ebeln ko~bsart po~ebelp po~matnr
 *  CRIANDO IF PARA CHECAR ERROS E VERIFICAR SE PODE CONTINUAR RODANDO
 *IF SY-SUBRC EQ 0.
 *
-*   PROCESSO DE DADOS 
+*   PROCESSO DE DADOS
 *
 *ENDIF.
 *--------------------------------------------------------------------*
-  
 
 
-LOOP AT ti_uniq INTO wa_uniq.
+*--------------------------------------------------------------------*
+* ABRE A TELA DE DEGUB AO RODAR O CÓDIGO, NÃO COLOCAR EM PRODUÇÃO!!!
+*                                         NÃO COLOCAR EM PRODUÇÃO!!!
+*
+*BREAK-POINT.
+*
+*--------------------------------------------------------------------*
 
-  WRITE: /  wa_uniq-ebeln,
-            wa_uniq-bsart,
-            wa_uniq-ebelp,
-            wa_uniq-matnr.
 
-ENDLOOP.
+
+
+
+*--------------------------------------------------------------------*
+* EXIBIR RETLATÓRIO
+*--------------------------------------------------------------------*
+
+TOP-OF-PAGE.
+
+* (001) É A CRIAÇÃO DE UM CAMPO DE TEXTO PARA PODER TRADUZIR A STRING PARA OUTRAS LINGUAS.
+
+  WRITE:  'Relatório de compras.'(001),
+          40 'Paginas:'(002),
+          47 sy-pagno.
+
+  ULINE.
+
+
+*COLOR TOTAL É TIPO UM CSS
+  LOOP AT ti_uniq INTO wa_uniq.
+
+    WRITE: /  wa_uniq-ebeln COLOR COL_TOTAL, 
+              wa_uniq-bsart,
+              wa_uniq-ebelp,
+              wa_uniq-matnr.
+
+  ENDLOOP.
